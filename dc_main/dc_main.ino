@@ -6,7 +6,6 @@
  */
 
 #include <ros.h>
-#include <std_msgs/Empty.h>
 #include <std_msgs/UInt16.h>
 
 ros::NodeHandle  nh;
@@ -17,7 +16,7 @@ void messageCb(const std_msgs::UInt16& cmd_msg){
     goForward();
     }
   if (cmd_msg.data == 2) {
-    goBack();
+    Stop();
     }
   if (cmd_msg.data == 3) {
     goRight();
@@ -36,19 +35,18 @@ void goForward(){
   digitalWrite(5, HIGH-digitalRead(5));
 }
 
-void goBack(){
-  digitalWrite(3, HIGH-digitalRead(3));
-  digitalWrite(4, HIGH-digitalRead(4));
+void Stop(){
+  digitalWrite(13, HIGH-digitalRead(13));
 }
 
 void goRight(){
   digitalWrite(2, HIGH-digitalRead(2));
-  digitalWrite(4, HIGH-digitalRead(4));
+  
 }
 
 void goLeft(){
   digitalWrite(5, HIGH-digitalRead(5));
-  digitalWrite(4, HIGH-digitalRead(4));
+  
 }
 
 
@@ -61,6 +59,7 @@ void setup()
   pinMode(3, OUTPUT);
   pinMode(4, OUTPUT);
   pinMode(5, OUTPUT);
+  pinMode(13, OUTPUT);
   nh.initNode();
   nh.subscribe(sub);
 }
