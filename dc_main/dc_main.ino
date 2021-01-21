@@ -37,6 +37,11 @@ void goForward(){
 
 void Stop(){
   digitalWrite(13, HIGH-digitalRead(13));
+
+  digitalWrite(2, LOW-digitalRead(2));
+  digitalWrite(5, LOW-digitalRead(5));
+  digitalWrite(4, LOW-digitalRead(2));
+  digitalWrite(3, LOW-digitalRead(5));
 }
 
 void goRight(){
